@@ -2,7 +2,7 @@ class Surfspot
 
 	
 	@@filepath = nil
-	
+
 	#Setting the filepath
 	def self.filepath=(path=nil)
 		@@filepath = File.join(APP_ROOT, path)
@@ -10,22 +10,22 @@ class Surfspot
 
 
 	def self.file_exists?
-		#class should know if the restaurant file exists
-		File.exist?(file)
+		#class should know if the surfspot file exists
+		File.exist?('surfspot.txt')
 	end
 
 
 	def self.create_file
 		#create the surfspots file
-		File.new('surfspot.rb', 'w')
+		File.new('surfspot.txt', 'w')
 	end
 
 	def self.saved_surfspots
 		#read the surfspot file
-		require 'surfspot.rb'
+		require 'surfspot.txt'
 
 		#return instances of surfspot
-		
+	end
 
 end
 

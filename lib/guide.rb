@@ -22,14 +22,14 @@ class Guide
 	def launch!
 		introduction
 		# Action loop
-		loop do 
+		result = nil
+		# repeat until user quits (using symbol for quit == :quit)
+		do until result == :quit
 			#   What do you want to do? (list, find, add, quit)?
 			print "> "
 			user_response = gets.chomp
 			#   Do the choosen action
 			result = do_action(user_response)
-			# repeat until user quits (using symbol for quit == :quit)
-			break if result == :quit
 		end
 		conclusion
 	end

@@ -24,7 +24,7 @@ class Guide
 		# Action loop
 		result = nil
 		# repeat until user quits (using symbol for quit == :quit)
-		do until result == :quit
+		until result == :quit
 			#   What do you want to do? (list, find, add, quit)?
 			print "> "
 			user_response = gets.chomp

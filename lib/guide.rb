@@ -22,11 +22,34 @@ class Guide
 	def launch!
 		introduction
 		# Action loop
-		#   What do you want to do? (list, find, add, quit)?
-		#   Do the choosen action
-		# repeat until user quits
+		loop do 
+			#   What do you want to do? (list, find, add, quit)?
+			print "> "
+			user_response = gets.chomp
+			#   Do the choosen action
+			result = do_action(user_response)
+			# repeat until user quits (using symbol for quit == :quit)
+			break if result == :quit
+		end
 		conclusion
 	end
+
+	def do_action(action)
+		case action
+		when 'list'
+			puts "Listing ..."
+		when 'find'
+			puts "finding ..."
+		when 'add'
+			puts "adding ..."
+		when 'quit'
+			return :quit
+		else
+			puts 	"\nI don't understand that command.
+					\nChoose from \"list\", \"find\", add OR \"quit\"\n"
+		end
+	end
+
 
 	def introduction
 		puts "\n\n<<< Welcome to the Surf Finder >>>\n\n"

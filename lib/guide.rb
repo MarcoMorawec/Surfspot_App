@@ -1,9 +1,11 @@
 # Where our Classes live 
 
+require 'surfspot'
 class Guide
 
 	def initialize(path=nil)
 		# locate the surfspot text file at path
+		Surfspot.filepath = path
 		# or create a new file
 		# exit if create fails
 	end
@@ -19,7 +21,7 @@ class Guide
 
 	def introduction
 		puts "\n\n<<< Welcome to the Surf Finder >>>\n\n"
-		puts "This is an interactive guide to help you find a great surf spot\n\n"
+		puts "This is an interactive guide to help you find a great surf spot!\n\n"
 	end
 
 	def conclusion

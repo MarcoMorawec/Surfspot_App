@@ -7,7 +7,7 @@ class Guide
 	def initialize(path=nil)
 		# locate the surfspot text file at path
 		Surfspot.filepath = path
-		if Surfspot.file_exists?
+		if Surfspot.file_usable?
 			puts "Found Surfspot file"
 		# or create a new file
 		elsif Surfspot.create_file

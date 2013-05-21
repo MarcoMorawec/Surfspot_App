@@ -14,3 +14,5 @@ require File.join(APP_ROOT, 'lib', 'guide.rb')
 # $:.unshift( File.join(APP_ROOT, 'lib') )
 # require 'guide'
 
+guide = Guide.new('surfspots.txt')
+guide.launch!

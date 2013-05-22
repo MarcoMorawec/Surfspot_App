@@ -8,6 +8,8 @@ class Surfspot
 		@@filepath = File.join(APP_ROOT, path)
 	end
 
+	attr_accessor :name, :location, :rating
+
 
 	def self.file_exists?
 		#class should know if the surfspot file exists
@@ -37,6 +39,14 @@ class Surfspot
 		require 'surfspots.txt'
 
 		#return instances of surfspot
+	end
+
+	def save
+		return false unless Surfspot.file_usable?
+		File.open(@@filepath, 'a') do |file|
+			file.puts "#{[@name, @location, @rating].join("\t")}\n"
+		end
+		return true
 	end
 
 end

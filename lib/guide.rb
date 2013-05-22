@@ -42,11 +42,12 @@ class Guide
 		action = nil
 		# Keep asking for user input until we get a valid action
 		until Guide::Config.actions.include?(action)
-			puts "Actions:" + " " + Guide::Config.actions.join(", ") if action
+			puts "You can enter: " + Guide::Config.actions.join(", ") if action
 			print "> "
 			user_response = gets.chomp
 			action = user_response.downcase.strip
 		end
+		# if we have an action from our @@actions array, specified in the config class
 		return action
 	end
 
@@ -57,12 +58,35 @@ class Guide
 		when 'find'
 			puts "finding ..."
 		when 'add'
-			puts "adding ..."
+			add
 		when 'quit'
 			return :quit
 		else
 			puts 	"\nI don't understand that command.
 					\nChoose from \"list\", \"find\", \"add\" OR \"quit\"\n"
+		end
+	end
+
+	def add
+		puts "Add your Surf Spot" 
+		#create the surfspot, give it its correct value, and save it
+		
+		#create and instance for surfspot
+		surfspot = Surfspot.new
+
+		print "Add Surf Spot name:"
+		surfspot.name = gets.chomp.strip
+		
+		print "Add Surf Spot location:"
+		surfspot.location = gets.chomp.strip
+		
+		print "Add Surf Spot Rating (1-5):"
+		surfspot.rating = gets.chomp.strip
+
+		if surfspot.save
+			puts "\nSurf Spot Added\n"
+		else
+			puts "\nSave Error. Surf Spot not addes"
 		end
 	end
 

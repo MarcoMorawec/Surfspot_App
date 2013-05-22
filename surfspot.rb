@@ -34,7 +34,7 @@ class Surfspot
 
 	def self.saved_surfspots
 		#read the surfspot file
-		require 'surfspot.txt'
+		require 'surfspots.txt'
 
 		#return instances of surfspot
 	end

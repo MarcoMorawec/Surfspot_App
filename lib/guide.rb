@@ -54,7 +54,7 @@ class Guide
 	def do_action(action)
 		case action
 		when 'list'
-			puts "Listing ..."
+			list
 		when 'find'
 			puts "finding ..."
 		when 'add'
@@ -65,6 +65,12 @@ class Guide
 			puts 	"\nI don't understand that command.
 					\nChoose from \"list\", \"find\", \"add\" OR \"quit\"\n"
 		end
+	end
+
+	def list
+		puts "List of your Surf Spot details" 
+		surfspot = Surfspot.saved_surfspots
+		puts surfspot
 	end
 
 	def add

@@ -36,9 +36,24 @@ class Surfspot
 
 	def self.saved_surfspots
 		#read the surfspot file
-		require 'surfspots.txt'
+		surfspots = []
+		if file_usable?
+			file = File.new(@@filepath, 'r')
+			file.each_line do |line|
+				surfspots << Surfspot.new.import_lines(line)
+			end
+			file.close
+		end
+		return surfspots
+	end
 
-		#return instances of surfspot
+	def import_lines(line)
+		line_array = line
+		@name = line_array[0]
+		@location = line_array[1]
+		@rating = line_array[2]
+		# returning the instance up to the surfspots arrays in saved_surfspots
+		return self
 	end
 
 	def self.making_surfspot_questions

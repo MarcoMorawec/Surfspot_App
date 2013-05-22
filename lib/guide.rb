@@ -68,20 +68,12 @@ class Guide
 	end
 
 	def add
-		puts "Add your Surf Spot" 
+		puts "Add your Surf Spot details" 
 		#create the surfspot, give it its correct value, and save it
 		
-		#create and instance for surfspot
-		surfspot = Surfspot.new
-
-		print "Add Surf Spot name:"
-		surfspot.name = gets.chomp.strip
+		#create an instance for surfspot in surfspot.rb
+		surfspot = Surfspot.making_surfspot_questions
 		
-		print "Add Surf Spot location:"
-		surfspot.location = gets.chomp.strip
-		
-		print "Add Surf Spot Rating (1-5):"
-		surfspot.rating = gets.chomp.strip
 
 		if surfspot.save
 			puts "\nSurf Spot Added\n"

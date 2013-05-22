@@ -41,6 +41,30 @@ class Surfspot
 		#return instances of surfspot
 	end
 
+	def self.making_surfspot_questions
+		args={}
+
+		#passing the arguments into the method
+		print "Add Surf Spot name:"
+		args[:name] = gets.chomp.strip
+		
+		print "Add Surf Spot location:"
+		args[:location] = gets.chomp.strip
+		
+		print "Add Surf Spot Rating (1-5):"
+		args[:rating] = gets.chomp.strip
+
+		surfspot = self.new(args)
+	end
+
+	#initialize surfspots
+	def initialize(args={})
+		@name     = args[:name]     || ""
+		@location = args[:location] || ""
+		@rating   = args[:rating]   || ""
+	end
+
+
 	def save
 		return false unless Surfspot.file_usable?
 		File.open(@@filepath, 'a') do |file|

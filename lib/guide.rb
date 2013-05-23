@@ -68,12 +68,17 @@ class Guide
 	end
 
 	def list
+		#outputting the table header
 		output_action_header("List of Surf Spots")
-		output_action_table_header(labels=[])
+		#getting the restaurants
 		surfspot = Surfspot.saved_surfspots
-		surfspot.each do |surf|
-			puts surf.name.ljust(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
-		end
+		#outputting the entire table
+		output_surfspot_table(surfspot)
+		#creating the table content of spot name, location and rating
+		
+		#surfspot.each do |surf|
+		#	puts surf.name.ljust(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
+		#end
 	end
 
 	def add
@@ -87,7 +92,7 @@ class Guide
 		if surfspot.save
 			puts "\nSurf Spot Added\n"
 		else
-			puts "\nSave Error. Surf Spot not addes"
+			puts "\nSave Error. Surf Spot not added"
 		end
 	end
 
@@ -108,7 +113,8 @@ class Guide
 		puts "\n#{text.upcase.center(60)}\n\n"
 	end
 
-	def output_action_table_header(labels=[])
+	def output_surfspot_table(surfspot=[])
+		##Creating the table header
 		#Spot name
 		print "Spot Name".ljust(20)
 		#Spot Location
@@ -117,6 +123,19 @@ class Guide
 		print "Spot Rating".rjust(20) + "\n"
 		#Adding a divider line
 		puts "-" * 60
+		## Creating the table content
+		surfspot.each do |surf|
+			line ="" << surf.name.ljust(20)
+			line << surf.location.center(20)
+			line << surf.rating.rjust(20)
+			puts line
+		end
+
+		#Showing a message for an empty list
+		puts "Surf Spot list is still empty. Try add a Surf Spot" if !Surfspot.file_exists?
+		#Adding a divider line
+		puts "-" * 60
+
 	end
 
 end

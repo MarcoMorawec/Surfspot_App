@@ -68,9 +68,11 @@ class Guide
 	end
 
 	def list
-		puts "List of your Surf Spot details" 
+		puts "List of Surf Spots" 
 		surfspot = Surfspot.saved_surfspots
-		puts surfspot
+		surfspot.each do |surf|
+			puts surf.name + " | " + surf.location + " | " + surf.rating
+		end
 	end
 
 	def add

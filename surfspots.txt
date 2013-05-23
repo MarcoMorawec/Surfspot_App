@@ -1,4 +1,5 @@
 rocky point	hawaii	5
 mundaka	spain	4
 Sunset	Hawaii	5
-		
+El Brusco	Spain	3
+Ala Moana	Hawaii	4

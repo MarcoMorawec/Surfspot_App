@@ -40,18 +40,20 @@ class Surfspot
 		if file_usable?
 			file = File.new(@@filepath, 'r')
 			file.each_line do |line|
-				surfspots << Surfspot.new.import_lines(line)
+				surfspots << Surfspot.new.import_line(line.chomp)
 			end
 			file.close
 		end
+		# Return all the surfspots name, location and rating
 		return surfspots
 	end
 
-	def import_lines(line)
-		line_array = line
-		@name = line_array[0]
-		@location = line_array[1]
-		@rating = line_array[2]
+	def import_line(line)
+		line_array = line.split("\t")
+		@name, @location, @rating = line_array
+		#@name = line_array[0]
+		#@location = line_array[1]
+		#@rating = line_array[2]
 		# returning the instance up to the surfspots arrays in saved_surfspots
 		return self
 	end

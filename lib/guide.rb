@@ -68,10 +68,10 @@ class Guide
 	end
 
 	def list
-		puts "List of Surf Spots" 
+		output_action_header("List of Surf Spots")
 		surfspot = Surfspot.saved_surfspots
 		surfspot.each do |surf|
-			puts surf.name + " | " + surf.location + " | " + surf.rating
+			puts surf.name.center(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
 		end
 	end
 
@@ -100,5 +100,10 @@ class Guide
 		puts "\n<<< Aloha and Happy Surfing! >>>\n\n\n"
 	end
 
+	private
+
+	def output_action_header(text)
+		puts "#{text.upcase.center(60)}"
+	end
 
 end

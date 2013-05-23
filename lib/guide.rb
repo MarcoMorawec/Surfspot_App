@@ -69,9 +69,10 @@ class Guide
 
 	def list
 		output_action_header("List of Surf Spots")
+		output_action_table_header(labels=[])
 		surfspot = Surfspot.saved_surfspots
 		surfspot.each do |surf|
-			puts surf.name.center(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
+			puts surf.name.ljust(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
 		end
 	end
 
@@ -100,10 +101,22 @@ class Guide
 		puts "\n<<< Aloha and Happy Surfing! >>>\n\n\n"
 	end
 
+	#creating the formatting methods for the table output
 	private
 
 	def output_action_header(text)
-		puts "#{text.upcase.center(60)}"
+		puts "\n#{text.upcase.center(60)}\n\n"
+	end
+
+	def output_action_table_header(labels=[])
+		#Spot name
+		print "Spot Name".ljust(20)
+		#Spot Location
+		print "Spot Location".center(20)
+		#Spot Rating
+		print "Spot Rating".rjust(20) + "\n"
+		#Adding a divider line
+		puts "-" * 60
 	end
 
 end

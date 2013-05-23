@@ -72,13 +72,8 @@ class Guide
 		output_action_header("List of Surf Spots")
 		#getting the restaurants
 		surfspot = Surfspot.saved_surfspots
-		#outputting the entire table
+		#outputting the entire table and creating the table content of spot name, location and rating
 		output_surfspot_table(surfspot)
-		#creating the table content of spot name, location and rating
-		
-		#surfspot.each do |surf|
-		#	puts surf.name.ljust(20) + " | " + surf.location.center(20) + " | " + surf.rating.center(20)
-		#end
 	end
 
 	def add
@@ -126,8 +121,8 @@ class Guide
 		## Creating the table content
 		surfspot.each do |surf|
 			line ="" << surf.name.ljust(20)
-			line << surf.location.center(20)
-			line << surf.rating.rjust(20)
+			line << "" + surf.location.center(20)
+			line << "" + surf.rating.rjust(20)
 			puts line
 		end
 

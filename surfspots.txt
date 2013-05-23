@@ -3,3 +3,6 @@ mundaka	spain	4
 Sunset	Hawaii	5
 El Brusco	Spain	3
 Ala Moana	Hawaii	4
+Kaisers	Hawaii	4
+Tuckermans	Rhode Island	3
+Winthrop	Boston	4

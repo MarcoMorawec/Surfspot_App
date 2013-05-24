@@ -6,3 +6,4 @@ Ala Moana	Hawaii	4
 Kaisers	Hawaii	4
 Tuckermans	Rhode Island	3
 Winthrop	Boston	4
+Rice Bowls	South Shore Hawaii	5

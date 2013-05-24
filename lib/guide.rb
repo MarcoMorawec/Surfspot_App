@@ -31,9 +31,9 @@ class Guide
 		# repeat until user quits (using symbol for quit == :quit)
 		until result == :quit
 			#   What do you want to do? (list, find, add, quit)?
-			action = get_action
+			action, args= get_action
 			#   Do the choosen action
-			result = do_action(action)
+			result = do_action(action, args)
 		end
 		conclusion
 	end
@@ -45,18 +45,21 @@ class Guide
 			puts "You can enter: " + Guide::Config.actions.join(", ") if action
 			print "> "
 			user_response = gets.chomp
-			action = user_response.downcase.strip
+			args = user_response.downcase.strip.split(' ')
+			#pulling the first word, the action, out of the args array
+			action = args.shift
 		end
 		# if we have an action from our @@actions array, specified in the config class
-		return action
+		return action, args
 	end
 
-	def do_action(action)
+	def do_action(action, args=[])
 		case action
 		when 'list'
 			list
 		when 'find'
-			puts "finding ..."
+			keyword = args.shift
+			find(keyword)
 		when 'add'
 			add
 		when 'quit'
@@ -68,12 +71,34 @@ class Guide
 	end
 
 	def list
-		#outputting the table header
+		#outputting the table headline
 		output_action_header("List of Surf Spots")
 		#getting the restaurants
 		surfspot = Surfspot.saved_surfspots
 		#outputting the entire table and creating the table content of spot name, location and rating
 		output_surfspot_table(surfspot)
+	end
+
+	def find(keyword="")
+		#showing the same table headline when finding surfspots
+		output_action_header("List of Surf Spots")
+		#Getting the keyword the user is searching for
+		if keyword
+			##Search action
+			#pulling in all saved susfspots
+			surfspot = Surfspot.saved_surfspots
+			#matching the keyword to the saved surfspots
+			found = surfspot.select do |surf|
+				surf.name.downcase.include?(keyword.downcase) ||
+				surf.location.downcase.include?(keyword.downcase) ||
+				surf.rating.to_i >= keyword.to_i
+			end
+			#Display the results that are in the found array
+			output_surfspot_table(found)
+		else
+			puts " Find surfspots by entering a surfspot"
+			puts " Examples: 'find sunset', 'find mundaka' "
+		end
 	end
 
 	def add

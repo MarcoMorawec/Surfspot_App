@@ -145,9 +145,9 @@ class Guide
 		puts "-" * 60
 		## Creating the table content
 		surfspot.each do |surf|
-			line ="" << surf.name.ljust(20)
-			line << "" + surf.location.center(20)
-			line << "" + surf.rating.rjust(20)
+			line ="" << surf.name.split(' ').map(&:capitalize).join(' ').ljust(20)
+			line << "" + surf.location.split(' ').map(&:capitalize).join(' ').center(20)
+			line << "" + surf.rating.split(' ').map(&:capitalize).join(' ').rjust(20)
 			puts line
 		end
 

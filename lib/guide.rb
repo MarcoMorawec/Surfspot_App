@@ -31,7 +31,7 @@ class Guide
 		# repeat until user quits (using symbol for quit == :quit)
 		until result == :quit
 			#   What do you want to do? (list, find, add, quit)?
-			action, args= get_action
+			action, args = get_action
 			#   Do the choosen action
 			result = do_action(action, args)
 		end
@@ -56,7 +56,7 @@ class Guide
 	def do_action(action, args=[])
 		case action
 		when 'list'
-			list
+			list(args)
 		when 'find'
 			keyword = args.shift
 			find(keyword)
@@ -70,14 +70,36 @@ class Guide
 		end
 	end
 
-	def list
+	def list(args=[])
+		##getting ready for sorting
+		#passing in the first argument
+		sort_order = args.shift
+		sort_order = sort_order
+
 		#outputting the table headline
 		output_action_header("List of Surf Spots")
+
+
 		#getting the restaurants
 		surfspot = Surfspot.saved_surfspots
+
+		#sorting the output of table
+		surfspot.sort! do |s1, s2|
+			case sort_order
+				when 'location'
+					s1.location.downcase <=> s2.location.downcase
+				when 'rating' 
+					s2.rating.to_i <=> s1.rating.to_i
+				#making name the default sort order
+				else 
+					s1.name.downcase <=> s2.name.downcase
+			end
+		end
 		#outputting the entire table and creating the table content of spot name, location and rating
 		output_surfspot_table(surfspot)
+		puts "To sort the list type \"list name\", \"list location\" or \"list rating\""
 	end
+
 
 	def find(keyword="")
 		#showing the same table headline when finding surfspots
@@ -145,6 +167,8 @@ class Guide
 		puts "-" * 60
 		## Creating the table content
 		surfspot.each do |surf|
+			#taking each variable (name, location, rating) and capitalizing the first letter of each word 
+			#and justifying it within 20 spaces
 			line ="" << surf.name.split(' ').map(&:capitalize).join(' ').ljust(20)
 			line << "" + surf.location.split(' ').map(&:capitalize).join(' ').center(20)
 			line << "" + surf.rating.split(' ').map(&:capitalize).join(' ').rjust(20)

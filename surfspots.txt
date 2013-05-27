@@ -7,3 +7,5 @@ Kaisers	Hawaii	4
 Tuckermans	Rhode Island	3
 Winthrop	Boston	4
 Rice Bowls	South Shore Hawaii	5
+Kewalos	South Shore	4
+Gas Chambers	Hawaii	4

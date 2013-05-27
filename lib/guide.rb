@@ -113,13 +113,13 @@ class Guide
 			found = surfspot.select do |surf|
 				surf.name.downcase.include?(keyword.downcase) ||
 				surf.location.downcase.include?(keyword.downcase) ||
-				surf.rating.to_i >= keyword.to_i
+				surf.rating.to_i <= keyword.to_i
 			end
 			#Display the results that are in the found array
 			output_surfspot_table(found)
 		else
 			puts " Find surfspots by entering a surfspot"
-			puts " Examples: 'find sunset', 'find mundaka' "
+			puts " Examples: 'find sunset', 'find mundaka' 'find 4'"
 		end
 	end
 
